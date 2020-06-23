@@ -1,0 +1,9 @@
+# User-specific files
+*.suo
+
+# Visual Studio temp something
+.vs/
+
+# Targets
+bin/
+obj/
