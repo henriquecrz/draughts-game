@@ -1,19 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace draughts_game
 {
     class Piece : IPiece
     {
-        public Piece()
-        {
+        private PieceType _type;
 
+        public Piece(Player player)
+        {
+            Owner = player;
+            _type = PieceType.Men;
         }
 
-        public void Move()
+        public Player Owner { get; private set; }
+
+        public PieceType Type
         {
-            throw new NotImplementedException();
+            get => _type;
+            set
+            {
+                if (value == PieceType.Men && _type == PieceType.King)
+                {
+                    throw new ArgumentException("Once a \"king\", the piece can not become a \"men\" again.");
+                }
+
+                _type = value;
+            }
         }
     }
 }

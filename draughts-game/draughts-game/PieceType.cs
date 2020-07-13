@@ -1,0 +1,5 @@
+﻿enum PieceType
+{
+    Men,
+    King
+}

@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace draughts_game
+﻿namespace draughts_game
 {
     interface IPiece
     {
-        public void Move();
+        public Player Owner { get; }
+
+        public PieceType Type { get; set; }
     }
 }
