@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace draughts_game
+namespace draughts_game.Game
 {
     class Player
     {

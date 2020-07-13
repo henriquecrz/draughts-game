@@ -1,60 +1,63 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
-namespace draughts_game
+namespace draughts_game.Game
 {
-    class Game
+    class Draughts
     {
-        public Game(Configuration config)
+        public Draughts()
         {
             SetConsoleConfiguration();
-            CreatePlayers();
-
-            Board = new Piece[config.BoardSize, config.BoardSize];
+            //CreatePlayers();
+            CreateBoard();
         }
 
         private void SetConsoleConfiguration()
         {
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.OutputEncoding = Encoding.Unicode;
-            //Console.WriteLine("\x263A");
         }
 
         private void CreatePlayers()
         {
             Players = new List<Player>();
 
-            for (int i = 0; i < Constant.MAX_NUMBER_OF_PLAYERS; i += 1)
+            for (int i = 0; i < Players.Count;) // Array.Exists(Players, n => n is null)
             {
                 Console.Write(Constant.NAME_INPUT_LABEL);
 
                 string name = Console.ReadLine();
 
-                if (Players.Exists(player => player.Name != name))
+                if (!Players.Exists(player => player.Name == name))
                 {
-                    Players.Add(new Player(name));
+                    Players[i] = new Player(name);
+                    i++;
                 }
                 else
                 {
                     Console.Clear();
-                    Console.WriteLine("Já existe um jogador com esse nome de usuário. Tente outro nome.\n");
+                    Console.WriteLine(Constant.EXISTING_USER_ERROR_MESSAGE + Environment.NewLine);
                 }
             }
         }
 
-        public List<Player> Players { get; private set; }
+        private void CreateBoard()
+        {
+            Board = new Piece[Constant.BOARD_SIZE, Constant.BOARD_SIZE];
 
-        public Player Player1 { get; set; }
+
+        }
+
+        public List<Player> Players { get; private set; }
 
         public Piece[,] Board { get; private set; }
 
-
-        public void PlayGame()
+        public void Play()
         {
             Random rand = new Random();
-            int playerIndex = rand.Next(Constant.MAX_NUMBER_OF_PLAYERS);
+            int playerIndex = rand.Next(Constant.MIN_NUMBER_OF_PLAYERS);
             Player player = Players[playerIndex];
 
             do
@@ -63,11 +66,21 @@ namespace draughts_game
                 Coordinate destination = new Coordinate(Console.ReadLine());
 
 
-
-            } while (true);
+                ChangeTurn();
+            } while (AnyPlayerHasAtLeastOnePiece());
         }
 
-        public void DisplayTable(int[,] array)
+        private void ChangeTurn()
+        {
+
+        }
+
+        private bool AnyPlayerHasAtLeastOnePiece()
+        {
+            return true;
+        }
+
+        public void DisplayTable(string[,] array)
         {
             int rowLength = array.GetLength(0);
             int columnLength = array.GetLength(1);
@@ -103,15 +116,6 @@ namespace draughts_game
             return line += "+";
         }
 
-        private bool IsValidMove(Coordinate from, Coordinate to)
-        {
-            Piece piece = Board[from.X, from.Y];
-
-
-
-            return true;
-        }
-
         public void Move(Coordinate from, Coordinate to)
         {
             if (IsValidMove(from, to))
@@ -122,6 +126,22 @@ namespace draughts_game
             {
                 throw new Exception();
             }
+        }
+
+        private bool IsValidMove(Coordinate from, Coordinate to)
+        {
+            Piece piece = Board[from.X, from.Y];
+
+            if (Board[from.X, from.Y].Type == PieceType.Men)
+            {
+
+            }
+            else
+            {
+
+            }
+
+            return true;
         }
     }
 }

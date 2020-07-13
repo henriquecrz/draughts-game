@@ -1,4 +1,4 @@
-﻿namespace draughts_game
+﻿namespace draughts_game.Game
 {
     interface IPiece
     {

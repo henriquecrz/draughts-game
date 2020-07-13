@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace draughts_game
+namespace draughts_game.Game
 {
     class Piece : IPiece
     {

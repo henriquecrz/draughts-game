@@ -1,4 +1,5 @@
-﻿using System;
+﻿using draughts_game.Game;
+using System;
 using System.Drawing;
 using System.Linq;
 
@@ -8,23 +9,22 @@ namespace draughts_game
     {
         static void Main(string[] args)
         {
-            Configuration config = new Configuration();
-            Game game = new Game(config);
+            Draughts draughts = new Draughts();
 
-            //game.PlayGame();
+            // draughts.Play();
 
-            int[,] example = new int[8, 8] {
-                { 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0 }
+            string[,] example = new string[8, 8] {
+                { " ", "x", " ", "x", " ", "x", " ", "x" },
+                { "x", " ", "x", " ", "x", " ", "x", " " },
+                { " ", "x", " ", "x", " ", "x", " ", "x" },
+                { " ", " ", " ", " ", " ", " ", " ", " " },
+                { " ", " ", " ", " ", " ", " ", " ", " " },
+                { "o", " ", "o", " ", "o", " ", "o", " " },
+                { " ", "o", " ", "o", " ", "o", " ", "o" },
+                { "o", " ", "o", " ", "o", " ", "o", " " }
             };
 
-            game.DisplayTable(example);
+            draughts.DisplayTable(example);
 
             Console.ReadKey();
         }
