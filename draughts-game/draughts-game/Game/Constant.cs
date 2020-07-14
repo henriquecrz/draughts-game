@@ -10,8 +10,10 @@
 
         public const int MIN_NUMBER_OF_TEAMS = 2;
 
+        public const string CREATE_PLAYERS_MESSAGE = "First, create 2 players...";
+
         public const string NAME_INPUT_LABEL = "Insert your user name: ";
 
-        public const string EXISTING_USER_ERROR_MESSAGE = "There is already an user with this name. Try another one.";
+        public const string EXISTING_USER_ERROR_MESSAGE = "There is already an user with this name. Try another one...";
     }
 }

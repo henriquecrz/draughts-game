@@ -1,32 +1,33 @@
 ﻿using draughts_game.Game;
 using System;
-using System.Drawing;
-using System.Linq;
 
 namespace draughts_game
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main() // string[] args
         {
-            Draughts draughts = new Draughts();
+            SetConsoleConfiguration();
+            Menu.Show();
 
-            // draughts.Play();
+            //string[,] example = new string[8, 8] {
+            //    { " ", "x", " ", "x", " ", "x", " ", "x" },
+            //    { "x", " ", "x", " ", "x", " ", "x", " " },
+            //    { " ", "x", " ", "x", " ", "x", " ", "x" },
+            //    { " ", " ", " ", " ", " ", " ", " ", " " },
+            //    { " ", " ", " ", " ", " ", " ", " ", " " },
+            //    { "o", " ", "o", " ", "o", " ", "o", " " },
+            //    { " ", "o", " ", "o", " ", "o", " ", "o" },
+            //    { "o", " ", "o", " ", "o", " ", "o", " " }
+            //};
 
-            string[,] example = new string[8, 8] {
-                { " ", "x", " ", "x", " ", "x", " ", "x" },
-                { "x", " ", "x", " ", "x", " ", "x", " " },
-                { " ", "x", " ", "x", " ", "x", " ", "x" },
-                { " ", " ", " ", " ", " ", " ", " ", " " },
-                { " ", " ", " ", " ", " ", " ", " ", " " },
-                { "o", " ", "o", " ", "o", " ", "o", " " },
-                { " ", "o", " ", "o", " ", "o", " ", "o" },
-                { "o", " ", "o", " ", "o", " ", "o", " " }
-            };
+            Console.Read();
+        }
 
-            draughts.DisplayTable(example);
-
-            Console.ReadKey();
+        private static void SetConsoleConfiguration()
+        {
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.Green;
         }
     }
 }

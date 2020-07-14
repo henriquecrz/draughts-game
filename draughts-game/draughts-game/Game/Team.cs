@@ -6,12 +6,27 @@ namespace draughts_game.Game
 {
     class Team
     {
-        public Team()
-        {
+        private string _tag;
 
+        public Team(string name)
+        {
+            Name = name;
         }
 
-        public string Tag { get; set; }
+        public string Name
+        {
+            get;
+            set;
+        }
+
+        public string Tag
+        {
+            get => _tag;
+            set
+            {
+                _tag = value;
+            }
+        }
 
         public List<Player> Players { get; private set; }
     }

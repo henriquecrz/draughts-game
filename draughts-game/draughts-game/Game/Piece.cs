@@ -12,7 +12,7 @@ namespace draughts_game.Game
             _type = PieceType.Men;
         }
 
-        public Player Owner { get; private set; }
+        public Player Owner { get; }
 
         public PieceType Type
         {
