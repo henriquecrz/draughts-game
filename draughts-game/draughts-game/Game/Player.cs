@@ -18,12 +18,14 @@ namespace draughts_game.Game
             get => _name;
             set
             {
-                if (!IsNameValid(value))
+                Response response = IsNameValid(value);
+
+                if (!response.IsValid)
                 {
-                    throw new ArgumentException("Name must have at least 1 and a maximum of 100 alphanumeric chars.");
+                    throw new ArgumentException(response.Message);
                 }
 
-                _name = value;
+                _name = value.Trim();
             }
         }
 
@@ -32,7 +34,9 @@ namespace draughts_game.Game
             get => _character;
             set
             {
-                if (!char.IsLetter(value))
+                Response response = IsCharValid(value);
+
+                if (!response.IsValid)
                 {
                     throw new ArgumentException("Character must be a letter.");
                 }
@@ -41,6 +45,20 @@ namespace draughts_game.Game
             }
         }
 
-        public static bool IsNameValid(string name) => !string.IsNullOrWhiteSpace(name) && name.Length <= 100;
+        public static Response IsNameValid(string name)
+        {
+            string trimmedName = name.Trim();
+
+            return !string.IsNullOrWhiteSpace(trimmedName) && trimmedName.Length <= 100 ?
+                new Response(true, Constant.IS_VALID_MESSAGE) :
+                new Response(false, Constant.INVALID_NAME_MESSAGE);
+        }
+
+        public static Response IsCharValid(char character)
+        {
+            return char.IsLetter(character) ?
+                new Response(true, Constant.IS_VALID_MESSAGE) :
+                new Response(false, Constant.INVALID_CHAR_MESSAGE);
+        }
     }
 }
