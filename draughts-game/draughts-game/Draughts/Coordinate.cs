@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace draughts_game.Game
+namespace draughts_game.Draughts
 {
     class Coordinate
     {
