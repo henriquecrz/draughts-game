@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace draughts_game.Game
+﻿namespace draughts_game.Game
 {
     class Response
     {
-        public Response(bool success, string message)
+        public Response(bool isValid, string message)
         {
-            Success = success;
+            IsValid = isValid;
             Message = message;
         }
 
-        public bool Success { get; set; }
+        public bool IsValid { get; }
 
-        public string Message { get; set; }
+        public string Message { get; }
     }
 }
