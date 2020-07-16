@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace draughts_game.Draughts
+namespace DraughtsGame
 {
-    class Winner : Player
+    public class Winner : Player
     {
         public Winner(string name, char character, int numberPieces) : base(name, character)
         {

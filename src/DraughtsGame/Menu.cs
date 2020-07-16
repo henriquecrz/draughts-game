@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace draughts_game.Draughts
+namespace DraughtsGame
 {
-    class Menu
+    public class Menu
     {
         private static bool _quit = false;
 

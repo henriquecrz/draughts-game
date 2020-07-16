@@ -1,6 +1,6 @@
-﻿namespace draughts_game.Draughts
+﻿namespace DraughtsGame
 {
-    interface IPlayer
+    public interface IPlayer
     {
         public string Name { get; set; }
 

@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace draughts_game.Draughts
+namespace DraughtsGame
 {
-    class Player : IPlayer
+    public class Player : IPlayer
     {
         private string _name;
         private char _character;

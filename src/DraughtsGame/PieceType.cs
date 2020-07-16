@@ -1,6 +1,6 @@
-﻿namespace draughts_game.Draughts
+﻿namespace DraughtsGame
 {
-    enum PieceType
+    public enum PieceType
     {
         Men,
         King

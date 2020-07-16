@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace draughts_game.Draughts
+namespace DraughtsGame
 {
-    class Match
+    public class Match
     {
         public Match()
         {
@@ -14,7 +14,7 @@ namespace draughts_game.Draughts
 
         public Piece[,] Board { get; private set; } // set? private?
 
-        public Player Winner { get; private set; }
+        public Winner Winner { get; private set; }
 
         private void CreatePlayers()
         {

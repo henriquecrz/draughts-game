@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace draughts_game.Draughts
+namespace DraughtsGame
 {
-    class Game
+    public static class Game
     {
 
 
-        public List<Match> Matches { get; set; }
+        public static List<Match> Matches { get; set; }
 
-        public void AddMatch(Match match)
+        public static void AddMatch(Match match)
         {
             Matches.Add(match);
         }

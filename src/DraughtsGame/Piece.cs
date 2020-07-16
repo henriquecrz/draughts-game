@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace draughts_game.Draughts
+namespace DraughtsGame
 {
-    class Piece : IPiece
+    public class Piece : IPiece
     {
         public Piece(char character)
         {

@@ -1,6 +1,6 @@
-﻿namespace draughts_game.Draughts
+﻿namespace DraughtsGame
 {
-    class Constant
+    public class Constant
     {
         public const int BOARD_SIZE = 8;
 

@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace draughts_game.Draughts
+namespace DraughtsGame
 {
-    class Coordinate
+    public class Coordinate
     {
         private readonly int x;
         private readonly int y;

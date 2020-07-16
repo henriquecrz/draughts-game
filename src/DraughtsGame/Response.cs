@@ -1,6 +1,6 @@
-﻿namespace draughts_game.Draughts
+﻿namespace DraughtsGame
 {
-    class Response
+    public class Response
     {
         public Response(bool isValid, string message)
         {

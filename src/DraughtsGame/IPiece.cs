@@ -1,6 +1,6 @@
-﻿namespace draughts_game.Draughts
+﻿namespace DraughtsGame
 {
-    interface IPiece
+    public interface IPiece
     {
         public char Character { get; }
 

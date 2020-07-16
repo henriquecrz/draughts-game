@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace draughts_game.Draughts
+namespace DraughtsGame
 {
-    class Team
+    public class Team
     {
         private string _tag;
 
