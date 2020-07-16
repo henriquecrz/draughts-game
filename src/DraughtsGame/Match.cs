@@ -14,6 +14,8 @@ namespace draughts_game.Draughts
 
         public Piece[,] Board { get; private set; } // set? private?
 
+        public Player Winner { get; private set; }
+
         private void CreatePlayers()
         {
             Players = new Player[Constant.NUMBER_OF_PLAYERS_REQUIRED];
@@ -122,7 +124,7 @@ namespace draughts_game.Draughts
             //    CreatePlayers();
             //}
 
-            int playerIndex = new Random().Next(Players.Count);
+            int playerIndex = new Random().Next(Players.Length);
 
             while (GetWinner() != null)
             {
@@ -142,12 +144,12 @@ namespace draughts_game.Draughts
                     pieceCoordinate = new Coordinate(Console.ReadLine());
                     response = IsPieceValid(pieceCoordinate);
 
-                    if (!response.Success)
+                    if (!response.IsValid)
                     {
                         Console.Clear();
                         Console.WriteLine(response.Message);
                     }
-                } while (!response.Success);
+                } while (!response.IsValid);
 
                 do
                 {
@@ -156,20 +158,35 @@ namespace draughts_game.Draughts
                     destination = new Coordinate(Console.ReadLine());
                     response = IsDestinationValid(destination);
 
-                    if (!response.Success)
+                    if (!response.IsValid)
                     {
                         Console.Clear();
                         Console.WriteLine(response.Message);
                     }
-                } while (!response.Success);
+                } while (!response.IsValid);
 
                 Move(pieceCoordinate, destination);
                 ChangeTurn(ref playerIndex);
             }
 
-            Player winner = GetWinner();
+            Console.WriteLine($"Congratulations, {Winner.Name}, you won with {Winner.} piece(s) ahead!");
+        }
 
-            Console.WriteLine($"Congratulations, {winner.Name}, you won with {winner.Pieces} piece(s) ahead!");
+        public void CommandRoute(string command)
+        {
+            if (command.StartsWith("/ff"))
+            {
+                Surrender();
+            }
+            else
+            {
+                Console.WriteLine($"{command} was not recognized, please try again.");
+            }
+        }
+
+        public void Surrender()
+        {
+
         }
 
         private Response IsNameInputValid(string nameInput)

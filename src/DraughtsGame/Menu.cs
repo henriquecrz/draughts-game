@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace draughts_game.Game
+namespace draughts_game.Draughts
 {
     class Menu
     {
-        public static bool Quit = false;
+        private static bool _quit = false;
 
         public static void Show()
         {
@@ -12,7 +12,7 @@ namespace draughts_game.Game
             Console.WriteLine("# Henrique's Draughts Game #");
             Console.WriteLine("#==========================#");
 
-            while (!Quit)
+            while (!_quit)
             {
                 Console.WriteLine();
                 Console.WriteLine("Type \"Play\" or \"Quit\".");
@@ -34,6 +34,14 @@ namespace draughts_game.Game
                 Match match = new Match();
 
                 match.Start();
+            }
+            else if (command == "quit")
+            {
+                _quit = true;
+            }
+            else
+            {
+
             }
         }
     }
