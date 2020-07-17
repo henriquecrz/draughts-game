@@ -4,9 +4,16 @@ namespace DraughtsGame
 {
     public class Program
     {
-        static void Main(string[] args)
+        static void Main() // string[] args
         {
-            Console.WriteLine("Hello World!");
+            SetConsoleConfiguration();
+            Menu.Show();
+        }
+
+        private static void SetConsoleConfiguration()
+        {
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.Green;
         }
     }
 }
