@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace DraughtsGame
+namespace DraughtsGame.UserInterface
 {
-    public class Menu
+    public class StartingUserInterface
     {
-        private static bool _quit = false;
+        private bool _quit = false;
 
-        public static void Show()
+        public void Show()
         {
             Console.WriteLine("#==========================#");
             Console.WriteLine("# Henrique's Draughts Game #");
@@ -27,7 +27,7 @@ namespace DraughtsGame
             Console.Read();
         }
 
-        private static void CommandRoute(string command)
+        private void CommandRoute(string command)
         {
             if (command.StartsWith("play"))
             {
@@ -35,7 +35,7 @@ namespace DraughtsGame
 
                 match.Start();
             }
-            else if (command == "quit")
+            else if (command.StartsWith("quit"))
             {
                 _quit = true;
             }
