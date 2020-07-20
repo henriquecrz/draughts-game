@@ -2,11 +2,11 @@
 
 namespace DraughtsGame.UserInterface
 {
-    public class StartingUserInterface
+    public static class Menu
     {
-        private bool _quit = false;
+        private static bool _quit = false;
 
-        public void Show()
+        public static void Show()
         {
             Console.WriteLine("#==========================#");
             Console.WriteLine("# Henrique's Draughts Game #");
@@ -27,7 +27,7 @@ namespace DraughtsGame.UserInterface
             Console.Read();
         }
 
-        private void CommandRoute(string command)
+        private static void CommandRoute(string command)
         {
             if (command.StartsWith("play"))
             {
