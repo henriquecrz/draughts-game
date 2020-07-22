@@ -3,12 +3,12 @@ using DraughtsGame.UserInterface;
 
 namespace DraughtsGame
 {
-    public class Program
+    public class Program // Public?
     {
         static void Main() // string[] args
         {
             SetConsoleConfiguration();
-            Menu.Show();
+            StartupMenu.Show();
         }
 
         private static void SetConsoleConfiguration()
