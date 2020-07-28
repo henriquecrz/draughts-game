@@ -6,59 +6,14 @@ namespace DraughtsGame
     {
         public Match()
         {
-            CreatePlayers(); // Players received from outside, Match does not have to create Players, so you have to create a class called Game (rename "Game" namespace) that will holds a list of matches and players
             CreateBoard();
         }
 
-        public Player[] Players { get; private set; } // set? private?
+        public static Player[] Players { get; private set; } // set? private?
 
-        public Piece[,] Board { get; private set; } // set? private?
+        public Piece[,] Board { get; private set; } // set? private? Criar classe e chamar a propriedade de table
 
         public Winner Winner { get; private set; }
-
-        private void CreatePlayers()
-        {
-            Players = new Player[Constant.NUMBER_OF_PLAYERS_REQUIRED];
-
-            for (int i = 0; i < Players.Length; i += 1)
-            {
-                string nameInput;
-                Response response;
-
-                do
-                {
-                    Console.Write(Constant.NAME_INPUT_LABEL);
-
-                    nameInput = Console.ReadLine();
-                    response = IsNameInputValid(nameInput);
-
-                    if (!response.IsValid)
-                    {
-                        Console.Clear();
-                        Console.WriteLine(response.Message);
-                    }
-                } while (!response.IsValid);
-
-                char charInput;
-
-                do
-                {
-                    Console.Write(Constant.CHAR_INPUT_LABEL);
-
-                    char.TryParse(Console.ReadLine(), out charInput);
-
-                    response = IsCharInputValid(charInput);
-
-                    if (!response.IsValid)
-                    {
-                        Console.Clear();
-                        Console.WriteLine(response.Message);
-                    }
-                } while (!response.IsValid);
-
-                Players[i] = new Player(nameInput, charInput);
-            }
-        }
 
         private void CreateBoard()
         {
@@ -117,20 +72,13 @@ namespace DraughtsGame
 
         public void Start()
         {
-            //if (Players.Count < Constant.MIN_NUMBER_OF_PLAYERS)
-            //{
-            //    Console.WriteLine(Constant.CREATE_PLAYERS_MESSAGE);
-
-            //    CreatePlayers();
-            //}
-
             int playerIndex = new Random().Next(Players.Length);
 
             while (GetWinner() != null)
             {
                 Player player = Players[playerIndex];
 
-                DisplayTable();
+                DisplayHUD();
                 Console.WriteLine($"Player {player.Name}, it's your turn.");
 
                 Coordinate pieceCoordinate;
@@ -169,7 +117,7 @@ namespace DraughtsGame
                 ChangeTurn(ref playerIndex);
             }
 
-            Console.WriteLine($"Congratulations, {Winner.Name}, you won with {Winner.} piece(s) ahead!");
+            Console.WriteLine($"Congratulations, {Winner.Name}, you won with {Winner.NumberPieces} piece(s) ahead!");
         }
 
         public void CommandRoute(string command)
@@ -187,36 +135,6 @@ namespace DraughtsGame
         public void Surrender()
         {
 
-        }
-
-        private Response IsNameInputValid(string nameInput)
-        {
-            Response response = Player.IsNameValid(nameInput);
-            bool isValid = response.IsValid;
-            string message = response.Message;
-
-            if (isValid && Array.Exists(Players, player => player.Name == nameInput))
-            {
-                isValid = false;
-                message = Constant.EXISTING_PLAYER_NAME_MESSAGE;
-            }
-
-            return new Response(isValid, message);
-        }
-
-        private Response IsCharInputValid(char character)
-        {
-            Response response = Player.IsCharValid(character);
-            bool isValid = response.IsValid;
-            string message = response.Message;
-
-            if (isValid && Array.Exists(Players, player => player.Character == character))
-            {
-                isValid = false;
-                message = Constant.EXISTING_PLAYER_CHAR_MESSAGE;
-            }
-
-            return new Response(isValid, message);
         }
 
         private Response IsPieceValid(Coordinate coordinate)
@@ -238,7 +156,21 @@ namespace DraughtsGame
         private void ChangeTurn(ref int index)
         {
             index += 1;
-            index %= Players.Count;
+            index %= Players.Length;
+        }
+
+        private void DisplayHUD()
+        {
+            Console.Clear();
+            DisplayScore();
+            Console.WriteLine();
+            DisplayTable();
+        }
+
+        private void DisplayScore()
+        {
+            Console.WriteLine($"[{Players[0].Name}] 1 vs 2 [{Players[1].Name}]"); // Player should have num Pieces?
+            // Console.WriteLine($"{file.Name, -20} : {file.Length, 10:N0}"); // Format
         }
 
         private void DisplayTable()
@@ -262,7 +194,6 @@ namespace DraughtsGame
                 board += Environment.NewLine + GetLine(displayRowLength);
             }
 
-            Console.Clear();
             Console.WriteLine(board);
         }
 
