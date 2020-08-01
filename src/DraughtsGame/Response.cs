@@ -2,6 +2,11 @@
 {
     public class Response
     {
+        public Response() : this(false, string.Empty)
+        {
+
+        }
+
         public Response(bool isValid, string message)
         {
             IsValid = isValid;
