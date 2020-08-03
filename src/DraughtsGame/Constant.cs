@@ -8,7 +8,11 @@
 
         public const int NUMBER_OF_PLAYERS_REQUIRED = 2;
 
-        public const int SPLIT_LENGTH = 2;
+        public const char SPLIT_SEPARATOR = ' ';
+
+        public const int SPLIT_COUNT = 2;
+
+        public const int COMMAND_PARAMETER_INDEX = 1;
 
         public const string IS_VALID_MESSAGE = "Ok";
 
