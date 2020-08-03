@@ -7,10 +7,9 @@ namespace DraughtsGame
         private string _name;
         private char _character;
 
-        public Player(string name, char character)
+        public Player(string name)
         {
             Name = name;
-            Character = character;
         }
 
         public string Name
