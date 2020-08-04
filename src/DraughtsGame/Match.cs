@@ -6,7 +6,20 @@ namespace DraughtsGame
     {
         public Match()
         {
+            DefinePlayerChar();
             CreateBoard();
+        }
+
+        private void RunOverPlayers(Action method)
+        {
+
+            method();
+
+        }
+
+        private void DefinePlayerChar()
+        {
+            throw new NotImplementedException();
         }
 
         public static Player[] Players { get; private set; } // set? private?
@@ -239,7 +252,7 @@ namespace DraughtsGame
 
         private Player GetWinner()
         {
-            return new Player("a", 'a');
+            return new Player("a");
         }
     }
 }
