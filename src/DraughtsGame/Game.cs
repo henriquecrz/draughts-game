@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace DraughtsGame
 {
@@ -52,6 +53,26 @@ namespace DraughtsGame
             }
 
             return new Response(isValid, message);
+        }
+
+        public static void ShowPlayers()
+        {
+            Console.WriteLine("#=========#");
+            Console.WriteLine("# Players #");
+            Console.WriteLine("#=========#");
+            Console.WriteLine();
+
+            if (Players.IsEmpty())
+            {
+                Console.WriteLine("There is no players registered.");
+            }
+            else
+            {
+                foreach (var player in Players)
+                {
+                    Console.WriteLine("- {0}", player.Name);
+                }
+            }
         }
     }
 }
