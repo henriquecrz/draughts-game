@@ -68,10 +68,18 @@ namespace DraughtsGame
             }
             else
             {
-                foreach (var player in Players)
+                for (int i = 0; i < Players.Count; i += 1)
                 {
-                    Console.WriteLine("- {0}", player.Name);
+                    Console.WriteLine($"{i + 1} - {Players[i].Name}");
                 }
+            }
+        }
+
+        public static void RunOverPlayers(Action method)
+        {
+            while (Players.Count < Constant.NUMBER_OF_PLAYERS_REQUIRED)
+            {
+                method();
             }
         }
     }

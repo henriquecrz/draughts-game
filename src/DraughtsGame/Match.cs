@@ -10,13 +10,6 @@ namespace DraughtsGame
             CreateBoard();
         }
 
-        private void RunOverPlayers(Action method)
-        {
-
-            method();
-
-        }
-
         private void DefinePlayerChar()
         {
             throw new NotImplementedException();
