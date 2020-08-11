@@ -12,7 +12,7 @@
 
         public const int SPLIT_COUNT = 2;
 
-        public const int COMMAND_PARAMETER_INDEX = 1;
+        public const int NAME_PARAMETER_INDEX = 1;
 
         public const string IS_VALID_MESSAGE = "Ok";
 
