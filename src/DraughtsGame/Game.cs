@@ -79,7 +79,7 @@ namespace DraughtsGame
         {
             while (Players.Count < Constant.NUMBER_OF_PLAYERS_REQUIRED)
             {
-                method();
+                method.Invoke();
             }
         }
     }
