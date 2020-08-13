@@ -38,7 +38,7 @@ namespace DraughtsGame.UserInterface
                     }
                 case true when command.StartsWith(Command.CREATE):
                     {
-                        CreateCommand(command);
+                        CreatePlayer(command);
                         break;
                     }
                 case true when command.StartsWith(Command.STATISTICS):
@@ -61,57 +61,91 @@ namespace DraughtsGame.UserInterface
 
         private static void PlayCommand()
         {
-            PlayMenu.Show();
-
-            while (Game.Players.Count < Constant.NUMBER_OF_PLAYERS_REQUIRED)
+            do
             {
-                // CreatePlayer();
-            }
+                if (Game.Players.Count != 0)
+                {
+                    Game.ShowPlayers();
+                }
 
-            // Mandar para uma tela que pergunta sobre os jogadores, se deseja usar ou criar
+                if (Game.Players.Count < Constant.NUMBER_OF_PLAYERS_REQUIRED)
+                {
+                    Console.WriteLine("First, we need to create at least {0} players;", Constant.NUMBER_OF_PLAYERS_REQUIRED);
 
-            Match match = new Match();
+                    Game.RunOverPlayers(CreatePlayer);
+                }
+                else
+                {
+                    Console.WriteLine("Select {0} players to start a new match.");
+                }
 
-            match.Start();
+                Console.Clear();
+                Console.WriteLine("#==========================#");
+                Console.WriteLine("#                          #");
+                Console.WriteLine("#==========================#");
+                Console.WriteLine();
+                Console.WriteLine("Type \"Play\" or \"Quit\".");
+                Console.Write(">> What would you like to do? ");
+
+                var command = Console.ReadLine().Trim().ToLower();
+
+                CommandRoute(command);
+            } while (!_quit);
         }
 
-        private static void CreateCommand(string command)
+        private static void CreatePlayer(string command)
         {
-            Response response = new Response();
             string name = string.Empty;
             string[] splittedCommand = command.Split(Constant.SPLIT_SEPARATOR, Constant.SPLIT_COUNT);
 
             if (Utils.ContainsParam(splittedCommand))
             {
-                name = splittedCommand[Constant.COMMAND_PARAMETER_INDEX];
-                response = Game.IsNameInputValid(name);
+                name = splittedCommand[Constant.NAME_PARAMETER_INDEX];
+                Response response = Game.IsNameInputValid(name);
 
-                if (!response.IsValid)
+                if (response.IsValid)
+                {
+                    Game.AddPlayer(new Player(name));
+                }
+                else
                 {
                     Console.Clear();
                     Console.WriteLine(response.Message);
+                    Console.WriteLine();
+                    CreatePlayer();
                 }
             }
+        }
 
-            while (!response.IsValid)
+        private static void CreatePlayer()
+        {
+            string name = string.Empty;
+            Response response = new Response();
+
+            do
             {
                 Console.Write(Constant.NAME_INPUT_LABEL);
 
                 name = Console.ReadLine();
                 response = Game.IsNameInputValid(name);
 
-                if (!response.IsValid)
+                // Console.Read
+
+                if (response.IsValid)
                 {
-                    Console.Clear();
-                    Console.WriteLine(response.Message);
+                    Game.AddPlayer(new Player(name));
                 }
                 else if (name == Command.QUIT)
                 {
                     return;
                 }
-            }
-
-            Game.AddPlayer(new Player(name));
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine(response.Message);
+                    Console.WriteLine();
+                }
+            } while (!response.IsValid);
         }
 
         private static void StatisticsCommand()
