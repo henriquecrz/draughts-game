@@ -98,7 +98,7 @@ namespace DraughtsGame.UserInterface
             string name = string.Empty;
             string[] splittedCommand = command.Split(Constant.SPLIT_SEPARATOR, Constant.SPLIT_COUNT);
 
-            if (Utils.ContainsParam(splittedCommand))
+            if (Command.ContainsParam(splittedCommand))
             {
                 name = splittedCommand[Constant.NAME_PARAMETER_INDEX];
                 Response response = Game.IsNameInputValid(name);
@@ -124,7 +124,7 @@ namespace DraughtsGame.UserInterface
 
             do
             {
-                Console.Write(Constant.NAME_INPUT_LABEL);
+                Console.Write(Label.NAME_INPUT);
 
                 name = Console.ReadLine();
                 response = Game.IsNameInputValid(name);
@@ -161,7 +161,6 @@ namespace DraughtsGame.UserInterface
         private static void HelpCommand(string command)
         {
             Console.WriteLine(Command.NOT_RECOGNIZED, command);
-
             Console.WriteLine();
             Console.WriteLine("GradeBook accepts the following commands:");
             Console.WriteLine();

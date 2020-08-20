@@ -1,5 +1,3 @@
-using System;
-
 namespace DraughtsGame
 {
     public class Command
@@ -13,5 +11,7 @@ namespace DraughtsGame
         public const string QUIT = "quit";
 
         public const string NOT_RECOGNIZED = "\"{0}\" was not recognized, please try again.";
+
+        public static bool ContainsParam(string[] command) => command.Length > 1;
     }
 }

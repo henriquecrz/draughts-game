@@ -34,7 +34,7 @@ namespace DraughtsGame
             if (isValid && Players.Exists(player => player.Name == nameInput))
             {
                 isValid = false;
-                message = Constant.EXISTING_PLAYER_NAME_MESSAGE;
+                message = Message.EXISTING_PLAYER_NAME;
             }
 
             return new Response(isValid, message);
@@ -49,7 +49,7 @@ namespace DraughtsGame
             if (isValid && Players.Exists(player => player.Character == character))
             {
                 isValid = false;
-                message = Constant.EXISTING_PLAYER_CHAR_MESSAGE;
+                message = Message.EXISTING_PLAYER_CHAR;
             }
 
             return new Response(isValid, message);
