@@ -1,4 +1,4 @@
-namespace DraughtsGame
+namespace DraughtsGame.Constants
 {
     public class Label
     {
