@@ -78,7 +78,7 @@ namespace DraughtsGame
 
         public static void RunOverPlayers(Action method)
         {
-            while (Players.Count < Constant.NUMBER_OF_PLAYERS_REQUIRED)
+            while (Players.Count < Configuration.NUMBER_OF_PLAYERS_REQUIRED)
             {
                 method.Invoke();
             }

@@ -69,9 +69,9 @@ namespace DraughtsGame.UserInterface
                     Game.ShowPlayers();
                 }
 
-                if (Game.Players.Count < Constant.NUMBER_OF_PLAYERS_REQUIRED)
+                if (Game.Players.Count < Configuration.NUMBER_OF_PLAYERS_REQUIRED)
                 {
-                    Console.WriteLine("First, we need to create at least {0} players;", Constant.NUMBER_OF_PLAYERS_REQUIRED);
+                    Console.WriteLine("First, we need to create at least {0} players;", Configuration.NUMBER_OF_PLAYERS_REQUIRED);
 
                     Game.RunOverPlayers(CreatePlayer);
                 }
@@ -97,11 +97,11 @@ namespace DraughtsGame.UserInterface
         private static void CreatePlayer(string command)
         {
             string name = string.Empty;
-            string[] splittedCommand = command.Split(Constant.SPLIT_SEPARATOR, Constant.SPLIT_COUNT);
+            string[] splittedCommand = command.Split(Separator.SPACE, Command.NUMBER_OF_SUBSTRINGS);
 
             if (Command.ContainsParam(splittedCommand))
             {
-                name = splittedCommand[Constant.NAME_PARAMETER_INDEX];
+                name = splittedCommand[Command.NAME_PARAMETER_INDEX];
                 Response response = Game.IsNameInputValid(name);
 
                 if (response.IsValid)

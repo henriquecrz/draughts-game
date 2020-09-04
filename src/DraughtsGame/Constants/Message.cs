@@ -10,6 +10,8 @@ namespace DraughtsGame.Constants
 
         public const string EXISTING_PLAYER_CHAR = "There is already a player using this char. Try another one.";
 
+        public const string IS_VALID = "Ok";
+        
         public const string GOODBYE = "";
     }
 }

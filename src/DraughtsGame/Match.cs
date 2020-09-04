@@ -24,7 +24,7 @@ namespace DraughtsGame
 
         private void CreateBoard()
         {
-            Board = new Piece[Constant.BOARD_SIZE, Constant.BOARD_SIZE];
+            Board = new Piece[Configuration.BOARD_SIZE, Configuration.BOARD_SIZE];
 
             Board[0, 1] = new Piece(Players[0].Character);
             Board[0, 3] = new Piece(Players[0].Character);

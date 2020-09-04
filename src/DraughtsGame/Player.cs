@@ -50,14 +50,14 @@ namespace DraughtsGame
             string trimmedName = name.Trim();
 
             return !string.IsNullOrWhiteSpace(trimmedName) && trimmedName.Length <= 100 ?
-                new Response(true, Constant.IS_VALID_MESSAGE) :
+                new Response(true, Message.IS_VALID) :
                 new Response(false, Message.INVALID_NAME);
         }
 
         public static Response IsCharValid(char character)
         {
             return char.IsLetter(character) ?
-                new Response(true, Constant.IS_VALID_MESSAGE) :
+                new Response(true, Message.IS_VALID) :
                 new Response(false, Message.INVALID_CHAR);
         }
     }
