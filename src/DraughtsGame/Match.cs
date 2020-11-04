@@ -1,5 +1,6 @@
 ﻿using System;
 using DraughtsGame.Constants;
+using DraughtsGame.Exceptions;
 
 namespace DraughtsGame
 {
@@ -185,7 +186,7 @@ namespace DraughtsGame
             int rowLength = Board.GetLength(0);
             int columnLength = Board.GetLength(1);
             int displayRowLength = (rowLength * 4) - 1;
-            string board = "";
+            string board = ""; // Initialize directly
 
             board += GetLine(displayRowLength);
 
@@ -224,7 +225,7 @@ namespace DraughtsGame
             }
             else
             {
-                throw new Exception();
+                throw new InvalidMoveException();
             }
         }
 

@@ -16,7 +16,7 @@ namespace DraughtsGame
 
         public bool IsCharacterValid(char character) => char.IsLetter(character);
 
-        public void BecomeAKing()
+        public void BecomeKing()
         {
             Character = char.ToUpper(Character);
             Type = PieceType.King;
