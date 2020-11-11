@@ -4,7 +4,7 @@ namespace DraughtsGame
     {
         public const string PLAY = "play";
 
-        public const string CREATE = "create";
+        public const string CREATE_PLAYER = "create";
 
         public const string STATISTICS = "stat";
 

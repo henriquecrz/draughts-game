@@ -66,7 +66,7 @@ namespace DraughtsGame
 
             if (Players.IsEmpty())
             {
-                Console.WriteLine("There is no players registered.");
+                Console.WriteLine("There is no players registered yet :c");
             }
             else
             {

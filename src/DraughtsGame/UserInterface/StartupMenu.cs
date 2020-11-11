@@ -1,5 +1,6 @@
 ﻿using System;
 using DraughtsGame.Constants;
+using DraughtsGame.Exceptions;
 
 namespace DraughtsGame.UserInterface
 {
@@ -16,7 +17,6 @@ namespace DraughtsGame.UserInterface
                 Console.WriteLine("# Henrique's Draughts Game #");
                 Console.WriteLine("#==========================#");
                 Console.WriteLine();
-                Console.WriteLine("Type \"Play\" or \"Quit\".");
                 Console.Write(">> What would you like to do? ");
 
                 var command = Console.ReadLine().Trim().ToLower();
@@ -33,46 +33,33 @@ namespace DraughtsGame.UserInterface
             switch (true)
             {
                 case true when command.StartsWith(Command.PLAY):
-                    {
-                        PlayCommand();
-                        break;
-                    }
-                case true when command.StartsWith(Command.CREATE):
-                    {
-                        CreatePlayer(command);
-                        break;
-                    }
+                    Play();
+                    break;
+                case true when command.StartsWith(Command.CREATE_PLAYER):
+                    CreatePlayer(command);
+                    break;
                 case true when command.StartsWith(Command.STATISTICS):
-                    {
-                        StatisticsCommand();
-                        break;
-                    }
+                    ShowStatistics();
+                    break;
                 case true when command.StartsWith(Command.QUIT):
-                    {
-                        QuitCommand();
-                        break;
-                    }
+                    Quit();
+                    break;
                 default:
-                    {
-                        HelpCommand(command);
-                        break;
-                    }
+                    Help(command);
+                    break;
             }
         }
 
-        private static void PlayCommand()
+        private static void Play()
         {
             do
             {
-                if (Game.Players.Count != 0)
-                {
-                    Game.ShowPlayers();
-                }
+                Game.ShowPlayers();
 
                 if (Game.Players.Count < Configuration.NUMBER_OF_PLAYERS_REQUIRED)
                 {
-                    Console.WriteLine("First, we need to create at least {0} players;", Configuration.NUMBER_OF_PLAYERS_REQUIRED);
-
+                    Console.WriteLine();
+                    Console.WriteLine("You need to create at least {0} players.", Configuration.NUMBER_OF_PLAYERS_REQUIRED);
                     Game.RunOverPlayers(CreatePlayer);
                 }
                 else
@@ -96,12 +83,11 @@ namespace DraughtsGame.UserInterface
 
         private static void CreatePlayer(string command)
         {
-            string name = string.Empty;
             string[] splittedCommand = command.Split(Separator.SPACE, Command.NUMBER_OF_SUBSTRINGS);
 
             if (Command.ContainsParam(splittedCommand))
             {
-                name = splittedCommand[Command.NAME_PARAMETER_INDEX];
+                string name = splittedCommand[Command.NAME_PARAMETER_INDEX];
                 Response response = Game.IsNameInputValid(name);
 
                 if (response.IsValid)
@@ -112,66 +98,71 @@ namespace DraughtsGame.UserInterface
                 {
                     Console.Clear();
                     Console.WriteLine(response.Message);
-                    Console.WriteLine();
+                    Console.WriteLine("Press any key to continue...");
+                    Console.ReadKey();
                     CreatePlayer();
                 }
+            }
+            else
+            {
+                throw new InvalidCommandException();
             }
         }
 
         private static void CreatePlayer()
         {
-            string name = string.Empty;
             Response response = new Response();
 
             do
             {
                 Console.Write(Label.NAME_INPUT);
 
-                name = Console.ReadLine();
-                response = Game.IsNameInputValid(name);
+                string name = Console.ReadLine().Trim();
 
-                // Console.Read
+                if (name.ToLower() == Command.QUIT)
+                {
+                    return;
+                }
+
+                response = Game.IsNameInputValid(name);
 
                 if (response.IsValid)
                 {
                     Game.AddPlayer(new Player(name));
                 }
-                else if (name == Command.QUIT)
-                {
-                    return;
-                }
                 else
                 {
-                    Console.Clear();
-                    Console.WriteLine(response.Message);
                     Console.WriteLine();
+                    Console.WriteLine(response.Message);
+                    Console.WriteLine("Press any key to continue...");
+                    Console.ReadKey();
                 }
             } while (!response.IsValid);
         }
 
-        private static void StatisticsCommand()
+        private static void ShowStatistics()
         {
             throw new NotImplementedException();
         }
 
-        private static void QuitCommand()
+        private static void Quit()
         {
             _quit = true;
         }
 
-        private static void HelpCommand(string command)
+        private static void Help(string command)
         {
             Console.WriteLine(Command.NOT_RECOGNIZED, command);
             Console.WriteLine();
-            Console.WriteLine("GradeBook accepts the following commands:");
+            Console.WriteLine("The menu accepts the following commands:");
             Console.WriteLine();
-            Console.WriteLine("Create 'Name' 'Type' 'Weighted' - Creates a new gradebook where 'Name' is the name of the gradebook, 'Type' is what type of grading it should use, and 'Weighted' is whether or not grades should be weighted (true or false).");
+            Console.WriteLine(" Create 'Name' 'Type' 'Weighted' - Creates a new gradebook where 'Name' is the name of the gradebook, 'Type' is what type of grading it should use, and 'Weighted' is whether or not grades should be weighted (true or false).");
             Console.WriteLine();
-            Console.WriteLine("Load 'Name' - Loads the gradebook with the provided 'Name'.");
+            Console.WriteLine(" Load 'Name' - Loads the gradebook with the provided 'Name'.");
             Console.WriteLine();
-            Console.WriteLine("Help - Displays all accepted commands.");
+            Console.WriteLine(" Help - Displays all accepted commands.");
             Console.WriteLine();
-            Console.WriteLine("Quit - Exits the application");
+            Console.WriteLine(" Quit - Exits the game");
         }
     }
 }
