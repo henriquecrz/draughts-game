@@ -13,9 +13,9 @@ namespace DraughtsGame
             Matches = new List<Match>();
         }
 
-        public static List<Player> Players { get; } // private set?
+        public static List<Player> Players { get; }
 
-        public static List<Match> Matches { get; } // private set?
+        public static List<Match> Matches { get; }
 
         public static void AddPlayer(Player player)
         {
