@@ -1,4 +1,4 @@
-﻿namespace DraughtsGame
+﻿namespace DraughtsGame.Models
 {
     public interface IPlayer
     {
