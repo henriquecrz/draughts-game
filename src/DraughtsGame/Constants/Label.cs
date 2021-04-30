@@ -4,6 +4,6 @@ namespace DraughtsGame.Constants
     {
         public const string NAME_INPUT = "Insert your user name: ";
 
-        public const string CHAR_INPUT = "Insert a char you'll use. Remember, you just can use a letter: ";
+        public const string CHAR_INPUT = "Insert a char you'll use. Remember, you can only use one letter: ";
     }
 }
