@@ -1,4 +1,5 @@
 ﻿using System;
+using DraughtsGame.Models;
 
 namespace DraughtsGame
 {

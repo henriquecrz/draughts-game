@@ -1,5 +1,6 @@
 ﻿using System;
 using DraughtsGame.Constants;
+using DraughtsGame.Models;
 
 namespace DraughtsGame
 {
