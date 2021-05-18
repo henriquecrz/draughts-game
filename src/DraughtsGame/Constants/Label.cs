@@ -5,6 +5,10 @@ namespace DraughtsGame.Constants
 {
     public class Label
     {
+        public const string INTENT_QUESTION = ">> What would you like to do? ";
+
+        public const string CONTINUE = "Press any key to continue...";
+
         public const string NAME_INPUT = "Insert your user name: ";
 
         public const string CHAR_INPUT = "Insert a char you'll use. Remember, you can only use one letter: ";
