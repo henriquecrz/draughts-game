@@ -13,19 +13,15 @@ namespace DraughtsGame.UserInterface
             do
             {
                 Console.Clear();
-                Console.WriteLine("#==========================#");
-                Console.WriteLine("# Henrique's Draughts Game #");
-                Console.WriteLine("#==========================#");
-                Console.WriteLine();
-                Console.Write(">> What would you like to do? ");
+                Console.WriteLine(Label.Title);
+                Console.Write(Label.INTENT_QUESTION);
 
                 var command = Console.ReadLine().Trim().ToLower();
 
                 CommandRoute(command);
             } while (!_quit);
 
-            Console.WriteLine("See you soon!");
-            Console.Read();
+            Goodbye();
         }
 
         private static void CommandRoute(string command)
@@ -50,16 +46,22 @@ namespace DraughtsGame.UserInterface
             }
         }
 
+        private static void Goodbye()
+        {
+            Console.WriteLine(Message.GOODBYE);
+            Console.ReadKey();
+        }
+
         private static void Play()
         {
             do
             {
                 Game.ShowPlayers();
 
-                if (Game.Players.Count < Configuration.NUMBER_OF_PLAYERS_REQUIRED)
+                if (Game.Players.Count < 2)
                 {
                     Console.WriteLine();
-                    Console.WriteLine("You need to create at least {0} players.", Configuration.NUMBER_OF_PLAYERS_REQUIRED);
+                    Console.WriteLine("You need to create at least {0} players.", 2);
                     Game.RunOverPlayers(CreatePlayer);
                 }
                 else
@@ -98,7 +100,7 @@ namespace DraughtsGame.UserInterface
                 {
                     Console.Clear();
                     Console.WriteLine(response.Message);
-                    Console.WriteLine("Press any key to continue...");
+                    Console.WriteLine(Label.CONTINUE);
                     Console.ReadKey();
                     CreatePlayer();
                 }
