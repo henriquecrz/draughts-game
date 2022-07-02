@@ -1,5 +1,4 @@
 ﻿using System;
-using DraughtsGame.Constants;
 using DraughtsGame.Exceptions;
 
 namespace DraughtsGame
@@ -17,7 +16,7 @@ namespace DraughtsGame
             throw new NotImplementedException();
         }
 
-        public static Player[] Players { get; private set; } // set? private?
+        public static Player[] Players { get; private set; }
 
         public Piece[,] Board { get; private set; } // set? private? Criar classe e chamar a propriedade de table
 
@@ -25,7 +24,7 @@ namespace DraughtsGame
 
         private void CreateBoard()
         {
-            Board = new Piece[Configuration.BOARD_SIZE, Configuration.BOARD_SIZE];
+            Board = new Piece[8, 8];
 
             Board[0, 1] = new Piece(Players[0].Character);
             Board[0, 3] = new Piece(Players[0].Character);

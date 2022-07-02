@@ -25,8 +25,10 @@ namespace DraughtsGame.Constants
             var stringBuilder = new StringBuilder();
 
             stringBuilder.Append("#==========================#");
-            stringBuilder.Append(Environment.NewLine + "# Henrique's Draughts Game #");
-            stringBuilder.Append(Environment.NewLine + "#==========================#");
+            stringBuilder.Append(Environment.NewLine);
+            stringBuilder.Append("# Henrique's Draughts Game #");
+            stringBuilder.Append(Environment.NewLine);
+            stringBuilder.Append("#==========================#");
             stringBuilder.Append(Environment.NewLine);
 
             Title = stringBuilder.ToString();

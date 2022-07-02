@@ -10,9 +10,10 @@ namespace DraughtsGame.UserInterface
 
         public static void Show()
         {
+            Console.Clear();
+
             do
             {
-                Console.Clear();
                 Console.WriteLine(Label.Title);
                 Console.Write(Label.INTENT_QUESTION);
 
@@ -113,13 +114,13 @@ namespace DraughtsGame.UserInterface
 
         private static void CreatePlayer()
         {
-            Response response = new Response();
+            Response response;
 
             do
             {
                 Console.Write(Label.NAME_INPUT);
 
-                string name = Console.ReadLine().Trim();
+                var name = Console.ReadLine().Trim();
 
                 if (name.ToLower() == Command.QUIT)
                 {

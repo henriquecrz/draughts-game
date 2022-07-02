@@ -36,7 +36,7 @@ namespace DraughtsGame
             if (isValid && Players.Exists(player => player.Name == nameInput))
             {
                 isValid = false;
-                message = Message.EXISTING_PLAYER_NAME;
+                message = Message.EXISTING_PLAYER_NAME_ERROR;
             }
 
             return new Response(isValid, message);
@@ -79,7 +79,7 @@ namespace DraughtsGame
 
         public static void RunOverPlayers(Action method)
         {
-            while (Players.Count < Configuration.NUMBER_OF_PLAYERS_REQUIRED)
+            while (Players.Count < 2)
             {
                 method.Invoke();
             }
